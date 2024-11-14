@@ -21,7 +21,7 @@ class _LoginViewState extends State<LoginView> {
   void _validateAndNavigate() {
     final phoneNumber = _phoneController.text;
     if (RegExp(r'^\+92\d{10}$').hasMatch(phoneNumber)) {
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
       );
@@ -48,8 +48,8 @@ class _LoginViewState extends State<LoginView> {
               const SizedBox(height: 150),
               Center(
                 child: Container(
-                  height: 100,
-                  width: 100,
+                  height: 120,
+                  width: 120,
                   decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
@@ -73,7 +73,7 @@ class _LoginViewState extends State<LoginView> {
               const Text(
                 'Quick Medical',
                 style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 35,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold),
               ),
@@ -81,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
               const Row(
                 children: [
                   SizedBox(
-                    width: 80,
+                    width: 60,
                   ),
                   Text('Please Enter your Mobile Number'),
                 ],
@@ -89,35 +89,30 @@ class _LoginViewState extends State<LoginView> {
               const Row(
                 children: [
                   SizedBox(
-                    width: 80,
+                    width: 60,
                   ),
                   Text('to Login/Signup'),
                 ],
               ),
               const SizedBox(height: 30),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                child: SizedBox(
-                  height: 40,
-                  width: 270,
-                  child: TextFormField(
-                    controller: _phoneController,
-                    decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      hintText: '+92 3489939178',
+              SizedBox(
+                height: 50,
+                width: 290,
+                child: TextFormField(
+                  controller: _phoneController,
+                  decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
-                    keyboardType: TextInputType.phone,
-                    // No inline validation to avoid showing red error border
-                    validator: (value) => null,
+                    hintText: '+92 3489939178',
                   ),
+                  keyboardType: TextInputType.phone,
+                  validator: (value) => null,
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: _validateAndNavigate,
                 style: ElevatedButton.styleFrom(
