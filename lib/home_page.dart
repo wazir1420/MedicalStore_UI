@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:medical/parts/main_body.dart';
+import 'package:medical/product_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -50,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                 width: MediaQuery.of(context).size.width,
                 height: 180,
                 decoration: const BoxDecoration(
-                  color: Colors.blue,
+                  color: Color.fromARGB(255, 3, 132, 238),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(20),
                     bottomRight: Radius.circular(20),
@@ -250,8 +251,17 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Row(
                           children: [
-                            medicine('assets/images/risek.png', 'Risek 20mg',
-                                'Rs.115', '4.9'),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const ProductDetailPage()));
+                              },
+                              child: medicine('assets/images/risek.png',
+                                  'Risek 20mg', 'Rs.115', '4.9'),
+                            ),
                             const SizedBox(
                               width: 15,
                             ),
@@ -311,6 +321,117 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
+      ),
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.2),
+              blurRadius: 10,
+              spreadRadius: 5,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.white,
+            currentIndex: _currentPage,
+            onTap: (int index) {
+              setState(() {
+                _currentPage = index;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                icon: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    },
+                    icon: const Icon(
+                      Icons.home_outlined,
+                      size: 30,
+                    )),
+                label: 'Home',
+              ),
+              BottomNavigationBarItem(
+                icon: Stack(
+                  children: <Widget>[
+                    const Icon(
+                      Icons.notifications_none_outlined,
+                      size: 30,
+                    ),
+                    Positioned(
+                      right: 2,
+                      child: Container(
+                        padding: const EdgeInsets.all(1),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(6),
+                          border: Border.all(color: Colors.white),
+                        ),
+                        constraints: const BoxConstraints(
+                          minWidth: 12,
+                          minHeight: 12,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                label: 'Notifications',
+              ),
+              BottomNavigationBarItem(
+                icon: Container(
+                  height: 40,
+                  width: 40,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: const Color.fromARGB(255, 3, 132, 238),
+                  ),
+                  child: Center(
+                    child: Container(
+                      height: 25,
+                      width: 25,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(
+                            5), // Adjust for better circularity
+                        border: Border.all(color: Colors.white, width: 3),
+                      ),
+                      child: const Center(
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 18, // Adjust icon size to fit better
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                label: '',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag_outlined, size: 30),
+                label: 'Cart',
+              ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.person_outline, size: 30),
+                label: 'Profile',
+              ),
+            ],
+            type: BottomNavigationBarType.fixed, // Prevent shifting labels
+            selectedItemColor: Colors.blue, // Active icon color
+            unselectedItemColor: Colors.grey, // Inactive icon color
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+          ),
+        ),
       ),
     );
   }
