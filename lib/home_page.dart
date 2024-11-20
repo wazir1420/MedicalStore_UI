@@ -434,9 +434,9 @@ class _HomePageState extends State<HomePage> {
                 label: 'Profile',
               ),
             ],
-            type: BottomNavigationBarType.fixed, // Prevent shifting labels
-            selectedItemColor: Colors.blue, // Active icon color
-            unselectedItemColor: Colors.grey, // Inactive icon color
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.blue,
+            unselectedItemColor: Colors.grey,
             showSelectedLabels: true,
             showUnselectedLabels: false,
           ),
