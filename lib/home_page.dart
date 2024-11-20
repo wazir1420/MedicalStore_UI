@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:medical/parts/cart_screen.dart';
+import 'package:medical/cart_screen.dart';
 import 'package:medical/parts/main_body.dart';
 import 'package:medical/product_screen.dart';
 

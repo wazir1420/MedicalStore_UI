@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medical/login.dart';
+import 'package:medical/login_screen.dart';
 
 class Navigate extends StatefulWidget {
   const Navigate({super.key});

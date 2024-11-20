@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:medical/additional.dart';
+import 'package:medical/parts/additional.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
