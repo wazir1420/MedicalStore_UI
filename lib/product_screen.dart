@@ -283,7 +283,7 @@ class _MyWidgetState extends State<ProductDetailPage> {
               })),
             ),
             const SizedBox(
-              height: 10,
+              height: 30,
             ),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20),
@@ -411,6 +411,41 @@ class _MyWidgetState extends State<ProductDetailPage> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 'Abdullah Khan',
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "I recently tried Risek Insta Powder, and it has exceeded all my expectations. The 20/1100 mg formula in these sachets is truly effective and works wonders for quick relief. Whether it's heartburn, acid reflux, or stomach discomfort, this product provides noticeable results almost instantly.",
+              ),
+            ),
+            const Row(
+              children: [
+                SizedBox(
+                  width: 20,
+                ),
+                Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                ),
+                Text(
+                  '4.8',
+                  style: TextStyle(fontSize: 15),
+                ),
+                SizedBox(
+                  width: 240,
+                ),
+                Text(
+                  '09-dec-2023',
+                  style: TextStyle(fontSize: 15),
+                )
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                'Hamza Naeem',
                 style: TextStyle(fontSize: 18),
               ),
             ),

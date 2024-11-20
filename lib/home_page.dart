@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:medical/parts/cart_screen.dart';
 import 'package:medical/parts/main_body.dart';
 import 'package:medical/product_screen.dart';
 
@@ -416,8 +417,16 @@ class _HomePageState extends State<HomePage> {
                 ),
                 label: '',
               ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_bag_outlined, size: 30),
+              BottomNavigationBarItem(
+                icon: IconButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CartPage()));
+                  },
+                  icon: const Icon(Icons.shopping_bag_outlined, size: 30),
+                ),
                 label: 'Cart',
               ),
               const BottomNavigationBarItem(
