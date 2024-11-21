@@ -24,12 +24,15 @@ class _SignupScreenState extends State<SignupScreen> {
         email: emailController.text,
         password: passController.text,
       );
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const LoginView()));
 
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registration successful!')),
+        const SnackBar(
+          content: Text('Registration successful!'),
+          backgroundColor: Colors.green,
+        ),
       );
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const LoginView()));
     } on FirebaseAuthException catch (e) {
       String message;
       if (e.code == 'weak-password') {
