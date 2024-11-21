@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:medical/cart_screen.dart';
 import 'package:medical/parts/main_body.dart';
 import 'package:medical/product_screen.dart';
+import 'package:medical/profile_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -93,10 +94,18 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           const SizedBox(width: 16),
-                          const Icon(
-                            Icons.shopping_bag_outlined,
-                            color: Colors.white,
-                            size: 30,
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const CartPage()));
+                            },
+                            icon: const Icon(
+                              Icons.shopping_bag_outlined,
+                              size: 30,
+                              color: Colors.white,
+                            ),
                           ),
                         ],
                       ),
@@ -401,15 +410,14 @@ class _HomePageState extends State<HomePage> {
                       height: 25,
                       width: 25,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                            5), // Adjust for better circularity
+                        borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: Colors.white, width: 3),
                       ),
                       child: const Center(
                         child: Icon(
                           Icons.add,
                           color: Colors.white,
-                          size: 18, // Adjust icon size to fit better
+                          size: 18,
                         ),
                       ),
                     ),
@@ -417,20 +425,20 @@ class _HomePageState extends State<HomePage> {
                 ),
                 label: '',
               ),
+              const BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_bag_outlined, size: 30),
+                label: 'Cart',
+              ),
               BottomNavigationBarItem(
                 icon: IconButton(
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const CartPage()));
+                            builder: (context) => const ProfileScreen()));
                   },
-                  icon: const Icon(Icons.shopping_bag_outlined, size: 30),
+                  icon: const Icon(Icons.person_outline, size: 30),
                 ),
-                label: 'Cart',
-              ),
-              const BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline, size: 30),
                 label: 'Profile',
               ),
             ],

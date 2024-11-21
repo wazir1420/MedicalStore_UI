@@ -161,8 +161,7 @@ class _CartPageState extends State<CartPage> {
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
-                    '_________________________________________________________'),
+                const Divider(),
                 const SizedBox(
                   height: 5,
                 ),
@@ -308,8 +307,7 @@ class _CartPageState extends State<CartPage> {
               ),
             ],
           ),
-          const Text(
-              '_________________________________________________________'),
+          const Divider()
         ],
       ),
     );

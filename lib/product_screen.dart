@@ -26,8 +26,8 @@ class _MyWidgetState extends State<ProductDetailPage> {
   int _selectedIndex = -1;
 
   final List<Map<String, String>> packageSize = [
-    {'price': 'Rs.106', 'details': '500 pallets'},
-    {'price': 'Rs.166', 'details': '110 pallets'},
+    {'price': 'Rs.106', 'details': '100 pallets'},
+    {'price': 'Rs.166', 'details': '150 pallets'},
     {'price': 'Rs.252', 'details': '300 pallets'},
   ];
 
