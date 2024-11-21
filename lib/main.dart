@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:medical/home_page.dart';
-import 'package:medical/profile_screen.dart';
+import 'package:medical/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:medical/parts/splash.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -14,7 +19,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Medical Store',
-      home: ProfileScreen(),
+      home: SplashView(),
     );
   }
 }

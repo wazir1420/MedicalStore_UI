@@ -1,27 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:medical/home_page.dart';
-import 'package:medical/signup_screen.dart';
+import 'package:medical/login_screen.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginViewState extends State<LoginView> {
+class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
   bool _isObscured = true;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
 
-  login() async {
+  void registerUser(BuildContext context) async {
     try {
-      final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passController.text,
       );
-
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Login successful!'),
@@ -29,38 +28,26 @@ class _LoginViewState extends State<LoginView> {
         ),
       );
 
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration successful!')),
       );
     } on FirebaseAuthException catch (e) {
       String message;
-
-      if (e.code == 'user-not-found') {
-        message = 'No user found for that email.';
-      } else if (e.code == 'wrong-password') {
-        message = 'Wrong password provided.';
+      if (e.code == 'weak-password') {
+        message = 'The password provided is too weak.';
+      } else if (e.code == 'email-already-in-use') {
+        message = 'The account already exists for that email.';
       } else {
-        message = 'Unexpected error: ${e.message}';
+        message = 'An unexpected error occurred: ${e.message}';
       }
 
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(message),
-          backgroundColor: Colors.red,
-        ),
+        SnackBar(content: Text(message)),
       );
-
-      print('FirebaseAuthException: $e');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: $e'),
-          backgroundColor: Colors.red,
-        ),
+        SnackBar(content: Text('An error occurred: $e')),
       );
-
-      print('Error: $e');
     }
   }
 
@@ -74,22 +61,22 @@ class _LoginViewState extends State<LoginView> {
               width: double.infinity,
               height: 250,
               decoration: const BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      offset: Offset(-5, 0),
-                    ),
-                  ],
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(30),
-                      bottomRight: Radius.circular(30))),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 10,
+                    offset: Offset(-5, 0),
+                  ),
+                ],
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                ),
+              ),
               child: Column(
                 children: [
-                  const SizedBox(
-                    height: 50,
-                  ),
+                  const SizedBox(height: 50),
                   Center(
                     child: Container(
                       height: 120,
@@ -119,21 +106,36 @@ class _LoginViewState extends State<LoginView> {
                   const Text(
                     'Quick Medical',
                     style: TextStyle(
-                        fontSize: 35,
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold),
+                      fontSize: 35,
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
             const Text(
-              'Already have an account?',
+              "Create a new account if you don't have.",
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  hintText: 'Name',
+                  hintStyle: const TextStyle(color: Colors.blue),
+                ),
+                keyboardType: TextInputType.name,
+              ),
+            ),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: TextFormField(
@@ -181,7 +183,9 @@ class _LoginViewState extends State<LoginView> {
             ),
             const SizedBox(height: 30),
             ElevatedButton(
-              onPressed: login,
+              onPressed: () {
+                registerUser(context);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(horizontal: 120),
@@ -190,20 +194,18 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               child: const Text(
-                'Sign In',
+                'Sign Up',
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
             ),
-            const SizedBox(height: 20),
-            const Text("Create a new account if you don't have."),
-            const SizedBox(height: 30),
+            const SizedBox(height: 10),
+            const Text('Already have an account?'),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => const SignupScreen(),
-                  ),
+                  MaterialPageRoute(builder: (context) => const LoginView()),
                 );
               },
               style: ElevatedButton.styleFrom(
@@ -214,7 +216,7 @@ class _LoginViewState extends State<LoginView> {
                 ),
               ),
               child: const Text(
-                'Sign Up',
+                'Sign In',
                 style: TextStyle(color: Colors.blue, fontSize: 20),
               ),
             ),

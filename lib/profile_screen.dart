@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:medical/cart_screen.dart';
 import 'package:medical/home_page.dart';
+import 'package:medical/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -24,7 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const Text(
               'My Profile',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 10,
@@ -188,6 +188,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     size: 20,
                   )
                 ],
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 80),
+              child: Divider(),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const LoginView()));
+              },
+              child: const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.logout_outlined,
+                      size: 30,
+                      color: Colors.blue,
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text(
+                      'Logout',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                    ),
+                    SizedBox(
+                      width: 200,
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_outlined,
+                      size: 20,
+                    )
+                  ],
+                ),
               ),
             ),
             const SizedBox(
