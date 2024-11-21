@@ -14,11 +14,9 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController passController = TextEditingController();
   bool _isObscured = true;
 
-  // Create FocusNodes to manage keyboard interaction
   final FocusNode emailFocusNode = FocusNode();
   final FocusNode passFocusNode = FocusNode();
 
-  // Register the user
   void registerUser(BuildContext context) async {
     try {
       final credential =
@@ -62,10 +60,8 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset:
-          true, // Ensure the screen resizes for the keyboard
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
-        // Ensure the content stays within the screen bounds
         child: SingleChildScrollView(
           child: Column(
             children: [
