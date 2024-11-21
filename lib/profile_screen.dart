@@ -98,7 +98,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   size: 30,
                   color: Colors.blue,
                 ),
-                'My orders'),
+                'My orders',
+                180),
             const SizedBox(
               height: 10,
             ),
@@ -115,7 +116,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   size: 30,
                   color: Colors.blue,
                 ),
-                'Billing'),
+                'Billing',
+                210),
             const SizedBox(
               height: 10,
             ),
@@ -132,7 +134,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   size: 30,
                   color: Colors.blue,
                 ),
-                'Faq'),
+                'Faq',
+                230),
             const SizedBox(
               height: 10,
             ),
@@ -143,13 +146,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
-            profileItems(
-                const Icon(
-                  Icons.logout_outlined,
-                  size: 30,
-                  color: Colors.blue,
-                ),
-                'Logout'),
             GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(context,
@@ -161,7 +157,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     size: 30,
                     color: Colors.blue,
                   ),
-                  'Logout'),
+                  'Logout',
+                  205),
             ),
             const SizedBox(
               height: 10,
@@ -295,7 +292,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-Widget profileItems(Icon icon, String text) {
+Widget profileItems(Icon icon, String text, double width) {
   return Padding(
     padding: const EdgeInsets.only(left: 20),
     child: Row(
@@ -308,8 +305,8 @@ Widget profileItems(Icon icon, String text) {
           text,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
         ),
-        const SizedBox(
-          width: 180,
+        SizedBox(
+          width: width,
         ),
         const Icon(
           Icons.arrow_forward_ios_outlined,
