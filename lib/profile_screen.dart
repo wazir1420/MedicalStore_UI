@@ -92,32 +92,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.edit_calendar_outlined,
-                    size: 30,
-                    color: Colors.blue,
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                    'My orders',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 180,
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    size: 20,
-                  )
-                ],
-              ),
-            ),
+            profileItems(
+                const Icon(
+                  Icons.edit_calendar_outlined,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                'My orders'),
             const SizedBox(
               height: 10,
             ),
@@ -128,32 +109,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.lock_clock_outlined,
-                    size: 30,
-                    color: Colors.blue,
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                    'Billing',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 210,
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    size: 20,
-                  )
-                ],
-              ),
-            ),
+            profileItems(
+                const Icon(
+                  Icons.lock_clock_outlined,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                'Billing'),
             const SizedBox(
               height: 10,
             ),
@@ -164,32 +126,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.help_outline,
-                    size: 30,
-                    color: Colors.blue,
-                  ),
-                  SizedBox(
-                    width: 30,
-                  ),
-                  Text(
-                    'Faq',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    width: 230,
-                  ),
-                  Icon(
-                    Icons.arrow_forward_ios_outlined,
-                    size: 20,
-                  )
-                ],
-              ),
-            ),
+            profileItems(
+                const Icon(
+                  Icons.help_outline,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                'Faq'),
             const SizedBox(
               height: 10,
             ),
@@ -200,38 +143,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
             const SizedBox(
               height: 20,
             ),
+            profileItems(
+                const Icon(
+                  Icons.logout_outlined,
+                  size: 30,
+                  color: Colors.blue,
+                ),
+                'Logout'),
             GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => const LoginView()));
               },
-              child: const Padding(
-                padding: EdgeInsets.only(left: 20),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.logout_outlined,
-                      size: 30,
-                      color: Colors.blue,
-                    ),
-                    SizedBox(
-                      width: 30,
-                    ),
-                    Text(
-                      'Logout',
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                    ),
-                    SizedBox(
-                      width: 200,
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios_outlined,
-                      size: 20,
-                    )
-                  ],
-                ),
-              ),
+              child: profileItems(
+                  const Icon(
+                    Icons.logout_outlined,
+                    size: 30,
+                    color: Colors.blue,
+                  ),
+                  'Logout'),
             ),
             const SizedBox(
               height: 10,
@@ -363,4 +293,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+}
+
+Widget profileItems(Icon icon, String text) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 20),
+    child: Row(
+      children: [
+        icon,
+        const SizedBox(
+          width: 30,
+        ),
+        Text(
+          text,
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+        ),
+        const SizedBox(
+          width: 180,
+        ),
+        const Icon(
+          Icons.arrow_forward_ios_outlined,
+          size: 20,
+        )
+      ],
+    ),
+  );
 }
